@@ -63,3 +63,8 @@ target/
 
 # Emacs backup files
 *~
+
+*.wav
+*.flac
+*.png
+*.txt

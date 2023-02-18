@@ -96,6 +96,9 @@ def vad_collector(sample_rate, frame_duration_ms,
 
     voiced_frames = []
     for frame in frames:
+        print(frame.duration, len(frame.bytes))
+        print(frame.bytes)
+        print(kandgsa)
         is_speech = vad.is_speech(frame.bytes, sample_rate)
 
         sys.stdout.write('1' if is_speech else '0')
@@ -147,6 +150,7 @@ def main(args):
     vad = webrtcvad.Vad(int(args[0]))
     frames = frame_generator(30, audio, sample_rate)
     frames = list(frames)
+    print(frames[0].duration)
     segments = vad_collector(sample_rate, 30, 300, vad, frames)
     for i, segment in enumerate(segments):
         path = 'chunk-%002d.wav' % (i,)
